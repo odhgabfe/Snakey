@@ -1,9 +1,20 @@
 
 package snakey;
 
+import static com.sun.javafx.scene.control.skin.Utils.getResource;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+//import javafx.scene.paint.Color;
 import javax.swing.JFrame;
+
 
 public class Snakey {
 
@@ -22,6 +33,22 @@ public class Snakey {
         
         //to close the window
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        //GRAPHICS - COLORS ETC.
+        //frame.setIconImage(Toolkit.getDefaultToolkit().getImage("snake.png"));
+        String imgPath = "../media_resources/snake.png";
+        InputStream imgStream = Snakey.class.getResourceAsStream(imgPath);
+        BufferedImage myIcon;
+        try {
+            myIcon = ImageIO.read(imgStream);
+            frame.setIconImage(myIcon);
+        } catch (IOException ex) {
+            Logger.getLogger(Snakey.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+
+           
         
         //make it show
         frame.setVisible(true); //deprecated method show(): use setVisible instead
